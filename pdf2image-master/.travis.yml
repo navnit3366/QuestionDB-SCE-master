@@ -1,0 +1,18 @@
+language: python
+python:
+  - "3.5"
+  - "3.6"
+  - "3.7"
+before_install:
+  - sudo apt-get install poppler-utils
+install:
+  - pip install pillow
+  - pip install psutil
+  - pip install memory_profiler
+  - pip install codecov
+script:
+  - python tests.py
+  - coverage run tests.py
+  - sudo apt-get remove poppler-utils
+  - coverage run -a tests.py
+  - codecov
